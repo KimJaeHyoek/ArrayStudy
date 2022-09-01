@@ -1,21 +1,25 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Student {
 	
 	private String name;
-	private int[] marks;
+	private ArrayList<Integer> marks = new ArrayList<Integer>();
 
 
 	public Student(String name, int...marks) {
 		this.name = name;
-		this.marks = marks;
+
+for(int mark: marks)
+		this.marks.add(mark);
 		
 	}
 
 
 	public int getNumberOfMarks() {
-		return marks.length;
+		return marks.size();
 	}
 
 
@@ -29,24 +33,14 @@ public class Student {
 
 
 	public int getMaximumMark() {
-		int maximum = Integer.MIN_VALUE;
-		for(int mark :marks) {
-		if(mark>maximum){
-			maximum = mark;
+		return Collections.max(marks);
 		}
-	}
-		return maximum;
-}
+	
+	
 
 
 	public int getminimumMark() {
-		int minimum = Integer.MAX_VALUE;
-		for(int mark :marks) {
-			if(mark<minimum) {
-				minimum=mark;
-			}
-		}
-			return minimum;
+		return Collections.min(marks);
 		
 		
 	}
@@ -55,6 +49,27 @@ public class Student {
 		int number =getNumberOfMarks();
 	
 		return new BigDecimal(sum).divide(new BigDecimal(number),3,RoundingMode.UP);
+	}
+	
+	public String toString() {
+		return name + marks;
+	}
+
+
+	
+	
+		
+
+
+	public void addNewMark(int mark) {
+		marks.add(mark);
+		
+	}
+
+
+	public void removeMarkAtInex(int index) {
+		marks.remove(index);
+		
 	}
 
 }
